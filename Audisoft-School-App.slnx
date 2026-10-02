@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="Audisoft-test/Audisoft-test.csproj" />
+  <Project Path="src/Audisoft.Core/Audisoft.Core.csproj" />
+  <Project Path="src/Audisoft.Infrastructure/Audisoft.Infrastructure.csproj" />
+  <Project Path="src/Audisoft.API/Audisoft.API.csproj" />
 </Solution>
