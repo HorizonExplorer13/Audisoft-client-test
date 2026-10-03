@@ -1,0 +1,135 @@
+<div class="data-table-container">
+  <div class="table-toolbar">
+    <div class="search-box">
+      <i class="bi bi-search"></i>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar..."
+        (input)="onFilterChange($event)"
+        [value]="globalFilter()"
+      />
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped align-middle">
+      <thead>
+        <tr>
+          @for (column of columns; track column.key) {
+            <th
+              [style.width]="column.width"
+              [class.text-center]="column.align === 'center'"
+              [class.text-end]="column.align === 'end'"
+              [class.sortable]="column.sortable"
+              (click)="onSort(column)"
+            >
+              <div class="d-flex align-items-center justify-content-between">
+                <span>{{ column.header }}</span>
+                @if (column.sortable) {
+                  <i [class]="getSortIcon(column)" class="sort-icon ms-1"></i>
+                }
+              </div>
+            </th>
+          }
+          @if (showActions) {
+            <th class="text-center" style="width: 120px;">{{ actionHeader }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @if (paginatedData().length === 0) {
+          <tr>
+            <td [attr.colspan]="columns.length + (showActions ? 1 : 0)" class="text-center text-muted py-4">
+              No se encontraron registros
+            </td>
+          </tr>
+        } @else {
+          @for (row of paginatedData(); track row) {
+            <tr>
+              @for (column of columns; track column.key) {
+                <td
+                  [class.text-center]="column.align === 'center'"
+                  [class.text-end]="column.align === 'end'"
+                >
+                  {{ getCellValue(row, column) }}
+                </td>
+              }
+              @if (showActions) {
+                <td class="text-center">
+                  <div class="btn-group btn-group-sm" role="group">
+                    <button
+                      class="btn btn-outline-primary"
+                      (click)="onView(row)"
+                      title="Ver"
+                      type="button"
+                    >
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button
+                      class="btn btn-outline-secondary"
+                      (click)="onEdit(row)"
+                      title="Editar"
+                      type="button"
+                    >
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button
+                      class="btn btn-outline-danger"
+                      (click)="onDelete(row)"
+                      title="Eliminar"
+                      type="button"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              }
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (totalPages() > 1) {
+    <nav class="pagination-nav" aria-label="Paginación">
+      <ul class="pagination pagination-sm justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage() === 1">
+          <button
+            class="page-link"
+            (click)="onPageChange(currentPage() - 1)"
+            [disabled]="currentPage() === 1"
+            type="button"
+          >
+            <i class="bi bi-chevron-left"></i>
+          </button>
+        </li>
+        @for (page of [].constructor(totalPages()); track $index; let i = $index) {
+          <li class="page-item" [class.active]="currentPage() === i + 1">
+            <button
+              class="page-link"
+              (click)="onPageChange(i + 1)"
+              type="button"
+            >
+              {{ i + 1 }}
+            </button>
+          </li>
+        }
+        <li class="page-item" [class.disabled]="currentPage() === totalPages()">
+          <button
+            class="page-link"
+            (click)="onPageChange(currentPage() + 1)"
+            [disabled]="currentPage() === totalPages()"
+            type="button"
+          >
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </li>
+      </ul>
+      <span class="pagination-info">
+        Mostrando {{ (currentPage() - 1) * pageSize + 1 }} a {{ min(currentPage() * pageSize, filteredData().length) }} de {{ filteredData().length }} registros
+      </span>
+    </nav>
+  }
+</div>

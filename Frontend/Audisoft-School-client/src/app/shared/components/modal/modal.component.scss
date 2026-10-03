@@ -1,0 +1,33 @@
+:host {
+  display: contents;
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 1.25rem;
+
+  .modal-title {
+    font-weight: 600;
+    color: #212529;
+    margin: 0;
+  }
+
+  .btn-close {
+    opacity: 0.75;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.modal-body {
+  padding: 1.25rem;
+}

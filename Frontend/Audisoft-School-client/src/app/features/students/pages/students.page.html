@@ -1,0 +1,11 @@
+<app-student-list />
+<app-student-detail [student]="service.selectedStudent()" />
+
+@if (errorModalOpen) {
+  <app-delete-confirmation-modal
+    [isOpen]="errorModalOpen"
+    [title]="errorModalTitle"
+    [message]="errorModalMessage"
+    (close)="onErrorModalClose()"
+  />
+}

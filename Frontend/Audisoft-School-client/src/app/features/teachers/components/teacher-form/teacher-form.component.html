@@ -1,0 +1,50 @@
+<app-modal
+  [title]="modalTitleText"
+  [isOpen]="true"
+  [size]="'md'"
+  (close)="onClose()"
+  (confirm)="onSubmit()"
+>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="nombre" class="form-label fw-medium">Nombre <span class="text-danger">*</span></label>
+      <input
+        type="text"
+        id="nombre"
+        class="form-control"
+        formControlName="nombre"
+        placeholder="Ingrese el nombre del profesor"
+        [class.is-invalid]="nombreInvalid"
+        autocomplete="off"
+      />
+      @if (nombreInvalid) {
+        <div class="invalid-feedback">
+          @if (nombre?.errors?.['required']) {
+            El nombre es obligatorio
+          }
+          @if (nombre?.errors?.['maxlength']) {
+            El nombre no puede exceder 200 caracteres
+          }
+        </div>
+      }
+    </div>
+
+    <div class="d-flex justify-content-end gap-2 mt-4">
+      <app-button
+        variant="outline-secondary"
+        type="button"
+        (click)="onClose()"
+      >
+        Cancelar
+      </app-button>
+      <app-button
+        variant="primary"
+        type="submit"
+        [loading]="form.pristine"
+        [icon]="'bi-check'"
+      >
+        {{ teacher ? 'Actualizar' : 'Crear' }}
+      </app-button>
+    </div>
+  </form>
+</app-modal>

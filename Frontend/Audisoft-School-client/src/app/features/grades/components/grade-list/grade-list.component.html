@@ -1,0 +1,29 @@
+<div class="grade-list-container">
+  <app-page-header
+    title="Notas"
+    subtitle="Gestión de notas y calificaciones"
+    [showCreateButton]="true"
+    createButtonText="Nueva Nota"
+    (createClick)="onCreate()"
+  />
+
+  <app-data-table
+    [data]="grades()"
+    [columns]="columns"
+    [loading]="loading()"
+    [pageSize]="10"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+    (view)="onView($event)"
+  />
+
+  @if (showForm()) {
+    <app-grade-form
+      [grade]="editingGrade()"
+      [students]="service.students()"
+      [teachers]="service.teachers()"
+      (save)="onFormSave($event)"
+      (close)="onFormClose()"
+    />
+  }
+</div>

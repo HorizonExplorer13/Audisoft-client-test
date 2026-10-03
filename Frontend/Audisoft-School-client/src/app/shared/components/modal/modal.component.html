@@ -1,0 +1,29 @@
+@if (isOpen) {
+  <div
+    class="modal fade show"
+    tabindex="-1"
+    role="dialog"
+    (click)="onBackdropClick($event)"
+    style="display: block;"
+  >
+    <div class="modal-dialog {{ sizeClass }}" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ title }}</h5>
+          @if (!hideCloseButton) {
+            <button
+              type="button"
+              class="btn-close"
+              (click)="onClose()"
+              aria-label="Cerrar"
+            ></button>
+          }
+        </div>
+        <div class="modal-body">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade show"></div>
+}

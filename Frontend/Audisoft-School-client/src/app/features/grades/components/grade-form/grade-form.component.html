@@ -1,0 +1,116 @@
+<app-modal
+  [title]="modalTitleText"
+  [isOpen]="true"
+  [size]="'lg'"
+  (close)="onClose()"
+  (confirm)="onSubmit()"
+>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label for="nombre" class="form-label fw-medium">Asignatura <span class="text-danger">*</span></label>
+        <input
+          type="text"
+          id="nombre"
+          class="form-control"
+          formControlName="nombre"
+          placeholder="Ingrese el nombre de la asignatura"
+          [class.is-invalid]="nombreInvalid"
+          autocomplete="off"
+        />
+        @if (nombreInvalid) {
+          <div class="invalid-feedback">
+            @if (nombre?.errors?.['required']) {
+              El nombre de la asignatura es obligatorio
+            }
+            @if (nombre?.errors?.['maxlength']) {
+              El nombre no puede exceder 200 caracteres
+            }
+          </div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label for="valor" class="form-label fw-medium">Valor <span class="text-danger">*</span></label>
+        <input
+          type="number"
+          id="valor"
+          class="form-control"
+          formControlName="valor"
+          placeholder="0.00"
+          step="0.01"
+          min="0"
+          max="999.99"
+          [class.is-invalid]="valorInvalid"
+        />
+        @if (valorInvalid) {
+          <div class="invalid-feedback">
+            @if (valor?.errors?.['required']) {
+              El valor es obligatorio
+            }
+            @if (valor?.errors?.['min']) {
+              El valor debe ser mayor o igual a 0
+            }
+            @if (valor?.errors?.['max']) {
+              El valor no puede exceder 999.99
+            }
+          </div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label for="idEstudiante" class="form-label fw-medium">Estudiante <span class="text-danger">*</span></label>
+        <select
+          id="idEstudiante"
+          class="form-select"
+          formControlName="idEstudiante"
+          [class.is-invalid]="idEstudianteInvalid"
+        >
+          <option value="0" disabled>Seleccione un estudiante</option>
+          @for (student of students; track student.id) {
+            <option [value]="student.id">{{ student.nombre }}</option>
+          }
+        </select>
+        @if (idEstudianteInvalid) {
+          <div class="invalid-feedback">Debe seleccionar un estudiante</div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label for="idProfesor" class="form-label fw-medium">Profesor <span class="text-danger">*</span></label>
+        <select
+          id="idProfesor"
+          class="form-select"
+          formControlName="idProfesor"
+          [class.is-invalid]="idProfesorInvalid"
+        >
+          <option value="0" disabled>Seleccione un profesor</option>
+          @for (teacher of teachers; track teacher.id) {
+            <option [value]="teacher.id">{{ teacher.nombre }}</option>
+          }
+        </select>
+        @if (idProfesorInvalid) {
+          <div class="invalid-feedback">Debe seleccionar un profesor</div>
+        }
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-2 mt-4">
+      <app-button
+        variant="outline-secondary"
+        type="button"
+        (click)="onClose()"
+      >
+        Cancelar
+      </app-button>
+      <app-button
+        variant="primary"
+        type="submit"
+        [loading]="form.pristine"
+        [icon]="'bi-check'"
+      >
+        {{ grade ? 'Actualizar' : 'Crear' }}
+      </app-button>
+    </div>
+  </form>
+</app-modal>

@@ -1,0 +1,142 @@
+.data-table-container {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  overflow: hidden;
+}
+
+.table-toolbar {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.search-box {
+  max-width: 300px;
+  position: relative;
+
+  .bi-search {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    pointer-events: none;
+  }
+
+  input {
+    padding-left: 2.5rem;
+  }
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  margin-bottom: 0;
+
+  th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    color: #495057;
+    padding: 0.75rem 1rem;
+    white-space: nowrap;
+    user-select: none;
+
+    &.sortable {
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+
+      &:hover {
+        background-color: #e9ecef;
+      }
+    }
+
+    .sort-icon {
+      font-size: 0.75rem;
+      opacity: 0.5;
+      transition: opacity 0.15s ease;
+    }
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border-color: #e9ecef;
+  }
+
+  tbody tr {
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  }
+}
+
+.pagination-nav {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  .pagination {
+    margin-bottom: 0;
+  }
+
+  .page-link {
+    color: #495057;
+    border-color: #dee2e6;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+
+    &:hover {
+      background-color: #e9ecef;
+      border-color: #dee2e6;
+      color: #212529;
+    }
+  }
+
+  .page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+  }
+
+  .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+  }
+
+  .pagination-info {
+    font-size: 0.8125rem;
+    color: #6c757d;
+    white-space: nowrap;
+  }
+}
+
+.btn-group-sm .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 768px) {
+  .pagination-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination {
+    justify-content: center;
+  }
+
+  .pagination-info {
+    text-align: center;
+  }
+}

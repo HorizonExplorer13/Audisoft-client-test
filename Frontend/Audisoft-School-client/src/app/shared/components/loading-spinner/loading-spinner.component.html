@@ -1,0 +1,21 @@
+@if (overlay) {
+  <div class="loading-overlay">
+    <div class="loading-content">
+      <div class="spinner-border {{ spinnerClass }}" role="status" aria-hidden="true">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      @if (text) {
+        <p class="mt-2 mb-0 text-muted">{{ text }}</p>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="loading-inline d-flex align-items-center justify-content-center" [style.min-height.px]="size === 'lg' ? 60 : 40">
+    <div class="spinner-border {{ spinnerClass }}" role="status" aria-hidden="true">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    @if (text) {
+      <span class="ms-2 text-muted">{{ text }}</span>
+    }
+  </div>
+}

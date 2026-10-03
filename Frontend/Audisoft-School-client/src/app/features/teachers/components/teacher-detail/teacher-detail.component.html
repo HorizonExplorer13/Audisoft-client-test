@@ -1,0 +1,26 @@
+<app-modal
+  [title]="'Detalle del Profesor'"
+  [isOpen]="!!teacher"
+  [size]="'md'"
+  (close)="teacher = null"
+>
+  @if (teacher) {
+    <dl class="row mb-0">
+      <dt class="col-sm-3 text-muted">ID</dt>
+      <dd class="col-sm-9">{{ teacher.id }}</dd>
+
+      <dt class="col-sm-3 text-muted">Nombre</dt>
+      <dd class="col-sm-9 fw-medium">{{ teacher.nombre }}</dd>
+    </dl>
+
+    <div class="d-flex justify-content-end mt-4">
+      <app-button
+        variant="outline-secondary"
+        type="button"
+        (click)="teacher = null"
+      >
+        Cerrar
+      </app-button>
+    </div>
+  }
+</app-modal>

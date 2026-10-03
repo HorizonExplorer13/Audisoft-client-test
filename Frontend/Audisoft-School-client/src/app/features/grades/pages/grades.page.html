@@ -1,0 +1,11 @@
+<app-grade-list />
+<app-grade-detail [grade]="service.selectedGrade()" />
+
+@if (errorModalOpen) {
+  <app-delete-confirmation-modal
+    [isOpen]="errorModalOpen"
+    [title]="errorModalTitle"
+    [message]="errorModalMessage"
+    (close)="onErrorModalClose()"
+  />
+}

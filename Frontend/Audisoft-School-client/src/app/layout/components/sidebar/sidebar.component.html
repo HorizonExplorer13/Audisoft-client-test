@@ -1,0 +1,25 @@
+<aside class="app-sidebar" [class.collapsed]="isCollapsed">
+  <nav class="sidebar-nav">
+    <ul class="nav flex-column">
+      @for (item of navItems; track item.path) {
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <i class="bi {{ item.icon }} nav-icon"></i>
+            <span class="nav-label">{{ item.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <small class="text-muted d-block text-center px-3">
+      Audisoft School v1.0
+    </small>
+  </div>
+</aside>

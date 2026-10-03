@@ -1,0 +1,43 @@
+@if (isOpen) {
+  <div class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            {{ title }}
+          </h5>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            (click)="onClose()"
+            aria-label="Cerrar"
+          ></button>
+        </div>
+        <div class="modal-body text-center py-4">
+          @if (entityName) {
+            <p class="mb-2">
+              No se puede eliminar el <strong>{{ entityName }}</strong> seleccionado.
+            </p>
+          } @else {
+            <p class="mb-2">
+              No se puede eliminar el registro seleccionado.
+            </p>
+          }
+          <p class="text-muted mb-0">{{ message }}</p>
+        </div>
+        <div class="modal-footer justify-content-center border-0">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="onClose()"
+          >
+            <i class="bi bi-check-circle me-1"></i>
+            Entendido
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade show"></div>
+}

@@ -1,0 +1,27 @@
+<div class="student-list-container">
+  <app-page-header
+    title="Estudiantes"
+    subtitle="Gestión de estudiantes del sistema"
+    [showCreateButton]="true"
+    createButtonText="Nuevo Estudiante"
+    (createClick)="onCreate()"
+  />
+
+  <app-data-table
+    [data]="students()"
+    [columns]="columns"
+    [loading]="loading()"
+    [pageSize]="10"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+    (view)="onView($event)"
+  />
+
+  @if (showForm()) {
+    <app-student-form
+      [student]="editingStudent()"
+      (save)="onFormSave($event)"
+      (close)="onFormClose()"
+    />
+  }
+</div>

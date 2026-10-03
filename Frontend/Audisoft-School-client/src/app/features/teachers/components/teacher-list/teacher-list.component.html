@@ -1,0 +1,27 @@
+<div class="teacher-list-container">
+  <app-page-header
+    title="Profesores"
+    subtitle="Gestión de profesores del sistema"
+    [showCreateButton]="true"
+    createButtonText="Nuevo Profesor"
+    (createClick)="onCreate()"
+  />
+
+  <app-data-table
+    [data]="teachers()"
+    [columns]="columns"
+    [loading]="loading()"
+    [pageSize]="10"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+    (view)="onView($event)"
+  />
+
+  @if (showForm()) {
+    <app-teacher-form
+      [teacher]="editingTeacher()"
+      (save)="onFormSave($event)"
+      (close)="onFormClose()"
+    />
+  }
+</div>

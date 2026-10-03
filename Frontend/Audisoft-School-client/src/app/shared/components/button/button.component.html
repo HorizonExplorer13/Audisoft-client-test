@@ -1,0 +1,15 @@
+<button
+  [type]="type"
+  [class]="classes.join(' ')"
+  [disabled]="disabled || loading"
+>
+  @if (loading) {
+    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+  } @else if (icon && iconPosition === 'left') {
+    <i class="bi {{ icon }} me-1"></i>
+  }
+  <ng-content></ng-content>
+  @if (icon && iconPosition === 'right') {
+    <i class="bi {{ icon }} ms-1"></i>
+  }
+</button>
