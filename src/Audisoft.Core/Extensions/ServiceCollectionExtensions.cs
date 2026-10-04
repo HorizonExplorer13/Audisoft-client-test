@@ -8,9 +8,9 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddCore(this IServiceCollection services)
     {
-        services.AddScoped<IEstudianteService, EstudianteService>();
-        services.AddScoped<IProfesorService, ProfesorService>();
-        services.AddScoped<INotaService, NotaService>();
+        services.AddScoped<IStudentService, StudentService>();
+        services.AddScoped<ITeacherService, TeacherService>();
+        services.AddScoped<IGradeService, GradeService>();
 
         return services;
     }

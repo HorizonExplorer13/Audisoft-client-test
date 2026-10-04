@@ -4,14 +4,14 @@ import { CreateTeacherDto, UpdateTeacherDto } from '../../domain/dtos/teacher.dt
 export const TeacherApiMapper = {
   toDomain: (dto: TeacherResponseDto) => ({
     id: dto.id,
-    nombre: dto.nombre,
+    name: dto.name,
   }),
 
   toCreateApi: (domain: CreateTeacherDto) => ({
-    Nombre: domain.nombre,
+    name: domain.name,
   }),
 
   toUpdateApi: (domain: UpdateTeacherDto) => ({
-    Nombre: domain.nombre,
+    name: domain.name,
   }),
 };

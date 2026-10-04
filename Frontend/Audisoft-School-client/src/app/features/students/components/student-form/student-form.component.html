@@ -7,22 +7,22 @@
 >
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-      <label for="nombre" class="form-label fw-medium">Nombre <span class="text-danger">*</span></label>
+      <label for="name" class="form-label fw-medium">Nombre <span class="text-danger">*</span></label>
       <input
         type="text"
-        id="nombre"
+        id="name"
         class="form-control"
-        formControlName="nombre"
+        formControlName="name"
         placeholder="Ingrese el nombre del estudiante"
-        [class.is-invalid]="nombreInvalid"
+        [class.is-invalid]="nameInvalid"
         autocomplete="off"
       />
-      @if (nombreInvalid) {
+      @if (nameInvalid) {
         <div class="invalid-feedback">
-          @if (nombre?.errors?.['required']) {
+          @if (name?.errors?.['required']) {
             El nombre es obligatorio
           }
-          @if (nombre?.errors?.['maxlength']) {
+          @if (name?.errors?.['maxlength']) {
             El nombre no puede exceder 200 caracteres
           }
         </div>

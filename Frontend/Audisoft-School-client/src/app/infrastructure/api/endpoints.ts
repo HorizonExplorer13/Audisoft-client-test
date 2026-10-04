@@ -1,5 +1,5 @@
 export const ENDPOINTS = {
-  students: '/api/estudiantes',
-  teachers: '/api/profesores',
-  grades: '/api/notas',
+  students: '/api/students',
+  teachers: '/api/teachers',
+  grades: '/api/grades',
 } as const;

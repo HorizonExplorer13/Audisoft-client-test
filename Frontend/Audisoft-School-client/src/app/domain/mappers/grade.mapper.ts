@@ -6,25 +6,25 @@ import { StudentMapper } from './student.mapper';
 export const GradeMapper = {
   toModel: (dto: GradeResponseDto): Grade => ({
     id: dto.id,
-    nombre: dto.nombre,
-    valor: dto.valor,
-    idProfesor: dto.idProfesor,
-    idEstudiante: dto.idEstudiante,
-    profesor: dto.profesor ? TeacherMapper.toModel(dto.profesor) : undefined,
-    estudiante: dto.estudiante ? StudentMapper.toModel(dto.estudiante) : undefined,
+    name: dto.name,
+    value: dto.value,
+    teacherId: dto.teacherId,
+    studentId: dto.studentId,
+    teacher: dto.teacher ? TeacherMapper.toModel(dto.teacher) : undefined,
+    student: dto.student ? StudentMapper.toModel(dto.student) : undefined,
   }),
 
-  toCreateDto: (formValue: { nombre: string; valor: number; idProfesor: number; idEstudiante: number }): CreateGradeDto => ({
-    nombre: formValue.nombre.trim(),
-    valor: formValue.valor,
-    idProfesor: formValue.idProfesor,
-    idEstudiante: formValue.idEstudiante,
+  toCreateDto: (formValue: { name: string; value: number; teacherId: number; studentId: number }): CreateGradeDto => ({
+    name: formValue.name.trim(),
+    value: formValue.value,
+    teacherId: formValue.teacherId,
+    studentId: formValue.studentId,
   }),
 
-  toUpdateDto: (formValue: { nombre: string; valor: number; idProfesor: number; idEstudiante: number }): UpdateGradeDto => ({
-    nombre: formValue.nombre.trim(),
-    valor: formValue.valor,
-    idProfesor: formValue.idProfesor,
-    idEstudiante: formValue.idEstudiante,
+  toUpdateDto: (formValue: { name: string; value: number; teacherId: number; studentId: number }): UpdateGradeDto => ({
+    name: formValue.name.trim(),
+    value: formValue.value,
+    teacherId: formValue.teacherId,
+    studentId: formValue.studentId,
   }),
 };

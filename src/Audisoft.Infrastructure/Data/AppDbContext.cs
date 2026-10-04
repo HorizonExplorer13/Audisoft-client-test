@@ -6,20 +6,17 @@ namespace Audisoft.Infrastructure.Data;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {
-        
-    }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<Estudiante> Estudiantes => Set<Estudiante>();
-    public DbSet<Profesor> Profesores => Set<Profesor>();
-    public DbSet<Nota> Notas => Set<Nota>();
-
+    public DbSet<Student> Students => Set<Student>();
+    public DbSet<Teacher> Teachers => Set<Teacher>();
+    public DbSet<Grade> Grades => Set<Grade>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfiguration(new EstudianteConfiguration());
-        modelBuilder.ApplyConfiguration(new ProfesorConfiguration());
-        modelBuilder.ApplyConfiguration(new NotaConfiguration());
+        modelBuilder.ApplyConfiguration(new StudentConfiguration());
+        modelBuilder.ApplyConfiguration(new TeacherConfiguration());
+        modelBuilder.ApplyConfiguration(new GradeConfiguration());
     }
 }

@@ -36,26 +36,26 @@ export class StudentFormComponent implements OnInit, OnChanges {
 
   private buildForm(): void {
     this.form = this.fb.group({
-      nombre: ['', [Validators.required, Validators.maxLength(200)]],
+      name: ['', [Validators.required, Validators.maxLength(200)]],
     });
   }
 
   private patchForm(): void {
     if (this.student) {
       this.form.patchValue({
-        nombre: this.student.nombre,
+        name: this.student.name,
       });
     } else {
       this.form.reset();
     }
   }
 
-  get nombre() {
-    return this.form.get('nombre');
+  get name() {
+    return this.form.get('name');
   }
 
-  get nombreInvalid(): boolean {
-    return !!(this.nombre?.invalid && (this.nombre?.dirty || this.nombre?.touched));
+  get nameInvalid(): boolean {
+    return !!(this.name?.invalid && (this.name?.dirty || this.name?.touched));
   }
 
   get modalTitleText(): string {
@@ -67,7 +67,7 @@ export class StudentFormComponent implements OnInit, OnChanges {
       const formValue = this.form.value;
       this.save.emit({
         id: this.student?.id || 0,
-        nombre: formValue.nombre.trim(),
+        name: formValue.name.trim(),
       });
     } else {
       this.form.markAllAsTouched();

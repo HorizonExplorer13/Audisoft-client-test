@@ -37,61 +37,61 @@ export class GradeFormComponent implements OnInit, OnChanges {
 
   private buildForm(): void {
     this.form = this.fb.group({
-      nombre: ['', [Validators.required, Validators.maxLength(200)]],
-      valor: [0, [Validators.required, Validators.min(0), Validators.max(999.99)]],
-      idEstudiante: [0, [Validators.required, Validators.min(1)]],
-      idProfesor: [0, [Validators.required, Validators.min(1)]],
+      name: ['', [Validators.required, Validators.maxLength(200)]],
+      value: [0, [Validators.required, Validators.min(0), Validators.max(999.99)]],
+      studentId: [0, [Validators.required, Validators.min(1)]],
+      teacherId: [0, [Validators.required, Validators.min(1)]],
     });
   }
 
   private patchForm(): void {
     if (this.grade) {
       this.form.patchValue({
-        nombre: this.grade.nombre,
-        valor: this.grade.valor,
-        idEstudiante: this.grade.idEstudiante,
-        idProfesor: this.grade.idProfesor,
+        name: this.grade.name,
+        value: this.grade.value,
+        studentId: this.grade.studentId,
+        teacherId: this.grade.teacherId,
       });
     } else {
       this.form.reset({
-        nombre: '',
-        valor: 0,
-        idEstudiante: 0,
-        idProfesor: 0,
+        name: '',
+        value: 0,
+        studentId: 0,
+        teacherId: 0,
       });
     }
   }
 
-  get nombre() {
-    return this.form.get('nombre');
+  get name() {
+    return this.form.get('name');
   }
 
-  get valor() {
-    return this.form.get('valor');
+  get value() {
+    return this.form.get('value');
   }
 
-  get idEstudiante() {
-    return this.form.get('idEstudiante');
+  get studentId() {
+    return this.form.get('studentId');
   }
 
-  get idProfesor() {
-    return this.form.get('idProfesor');
+  get teacherId() {
+    return this.form.get('teacherId');
   }
 
-  get nombreInvalid(): boolean {
-    return !!(this.nombre?.invalid && (this.nombre?.dirty || this.nombre?.touched));
+  get nameInvalid(): boolean {
+    return !!(this.name?.invalid && (this.name?.dirty || this.name?.touched));
   }
 
-  get valorInvalid(): boolean {
-    return !!(this.valor?.invalid && (this.valor?.dirty || this.valor?.touched));
+  get valueInvalid(): boolean {
+    return !!(this.value?.invalid && (this.value?.dirty || this.value?.touched));
   }
 
-  get idEstudianteInvalid(): boolean {
-    return !!(this.idEstudiante?.invalid && (this.idEstudiante?.dirty || this.idEstudiante?.touched));
+  get studentIdInvalid(): boolean {
+    return !!(this.studentId?.invalid && (this.studentId?.dirty || this.studentId?.touched));
   }
 
-  get idProfesorInvalid(): boolean {
-    return !!(this.idProfesor?.invalid && (this.idProfesor?.dirty || this.idProfesor?.touched));
+  get teacherIdInvalid(): boolean {
+    return !!(this.teacherId?.invalid && (this.teacherId?.dirty || this.teacherId?.touched));
   }
 
   get modalTitleText(): string {
@@ -103,10 +103,10 @@ export class GradeFormComponent implements OnInit, OnChanges {
       const formValue = this.form.value;
       this.save.emit({
         id: this.grade?.id || 0,
-        nombre: formValue.nombre.trim(),
-        valor: formValue.valor,
-        idProfesor: formValue.idProfesor,
-        idEstudiante: formValue.idEstudiante,
+        name: formValue.name.trim(),
+        value: formValue.value,
+        teacherId: formValue.teacherId,
+        studentId: formValue.studentId,
       });
     } else {
       this.form.markAllAsTouched();

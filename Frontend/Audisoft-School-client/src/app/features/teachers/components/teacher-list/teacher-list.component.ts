@@ -22,7 +22,7 @@ export class TeacherListComponent {
   readonly editingTeacher = this.service.editingTeacher;
 
   readonly columns: ColumnDef<Teacher>[] = [
-    { key: 'nombre', header: 'Nombre', sortable: true, filterable: true },
+    { key: 'name', header: 'Nombre', sortable: true, filterable: true },
   ];
 
   onCreate(): void {
@@ -34,7 +34,7 @@ export class TeacherListComponent {
   }
 
   onDelete(teacher: Teacher): void {
-    if (confirm(`¿Está seguro de eliminar al profesor "${teacher.nombre}"?`)) {
+    if (confirm(`¿Está seguro de eliminar al profesor "${teacher.name}"?`)) {
       this.service.delete(teacher.id);
     }
   }
@@ -49,9 +49,9 @@ export class TeacherListComponent {
 
   onFormSave(teacher: Teacher): void {
     if (this.editingTeacher()) {
-      this.service.update(teacher.id, { nombre: teacher.nombre });
+      this.service.update(teacher.id, { name: teacher.name });
     } else {
-      this.service.create({ nombre: teacher.nombre });
+      this.service.create({ name: teacher.name });
     }
   }
 }

@@ -4,14 +4,14 @@ import { CreateStudentDto, UpdateStudentDto, StudentResponseDto } from '../dtos/
 export const StudentMapper = {
   toModel: (dto: StudentResponseDto): Student => ({
     id: dto.id,
-    nombre: dto.nombre,
+    name: dto.name,
   }),
 
-  toCreateDto: (formValue: { nombre: string }): CreateStudentDto => ({
-    nombre: formValue.nombre.trim(),
+  toCreateDto: (formValue: { name: string }): CreateStudentDto => ({
+    name: formValue.name.trim(),
   }),
 
-  toUpdateDto: (formValue: { nombre: string }): UpdateStudentDto => ({
-    nombre: formValue.nombre.trim(),
+  toUpdateDto: (formValue: { name: string }): UpdateStudentDto => ({
+    name: formValue.name.trim(),
   }),
 };

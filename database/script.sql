@@ -9,38 +9,35 @@ END;
 GO
 
 BEGIN TRANSACTION;
-CREATE TABLE [Estudiantes] (
+CREATE TABLE [Students] (
     [Id] int NOT NULL IDENTITY,
-    [Nombre] nvarchar(200) NOT NULL,
-    CONSTRAINT [PK_Estudiantes] PRIMARY KEY ([Id])
+    [Name] nvarchar(200) NOT NULL,
+    CONSTRAINT [PK_Students] PRIMARY KEY ([Id])
 );
 
-CREATE TABLE [Profesores] (
+CREATE TABLE [Teachers] (
     [Id] int NOT NULL IDENTITY,
-    [Nombre] nvarchar(200) NOT NULL,
-    CONSTRAINT [PK_Profesores] PRIMARY KEY ([Id])
+    [Name] nvarchar(200) NOT NULL,
+    CONSTRAINT [PK_Teachers] PRIMARY KEY ([Id])
 );
 
-CREATE TABLE [Notas] (
+CREATE TABLE [Grades] (
     [Id] int NOT NULL IDENTITY,
-    [Nombre] nvarchar(200) NOT NULL,
-    [Valor] decimal(5,2) NOT NULL,
-    [IdProfesor] int NOT NULL,
-    [IdEstudiante] int NOT NULL,
-    CONSTRAINT [PK_Notas] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_Notas_Estudiantes] FOREIGN KEY ([IdEstudiante]) REFERENCES [Estudiantes] ([Id]) ON DELETE NO ACTION,
-    CONSTRAINT [FK_Notas_Profesores] FOREIGN KEY ([IdProfesor]) REFERENCES [Profesores] ([Id]) ON DELETE NO ACTION
+    [Name] nvarchar(200) NOT NULL,
+    [Value] decimal(5,2) NOT NULL,
+    [TeacherId] int NOT NULL,
+    [StudentId] int NOT NULL,
+    CONSTRAINT [PK_Grades] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Grades_Students] FOREIGN KEY ([StudentId]) REFERENCES [Students] ([Id]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_Grades_Teachers] FOREIGN KEY ([TeacherId]) REFERENCES [Teachers] ([Id]) ON DELETE NO ACTION
 );
 
-CREATE INDEX [IX_Notas_IdEstudiante] ON [Notas] ([IdEstudiante]);
+CREATE INDEX [IX_Grades_StudentId] ON [Grades] ([StudentId]);
 
-CREATE INDEX [IX_Notas_IdProfesor] ON [Notas] ([IdProfesor]);
+CREATE INDEX [IX_Grades_TeacherId] ON [Grades] ([TeacherId]);
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20261002170126_initCreateMigration', N'9.0.20');
-
-INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20261002194233_InitialCreate', N'9.0.20');
+VALUES (N'20261004170928_InitialCreate', N'9.0.20');
 
 COMMIT;
 GO

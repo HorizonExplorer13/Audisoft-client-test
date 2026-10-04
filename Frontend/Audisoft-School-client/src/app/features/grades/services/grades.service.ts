@@ -55,7 +55,7 @@ export class GradesService {
     this.loading.set(true);
     try {
       const newGrade = await this.repo.create(dto);
-      this.grades.update(list => [...list, newGrade]);
+      this.grades.update((list: Grade[]) => [...list, newGrade]);
       this.notify.success('Nota creada correctamente');
       this.closeForm();
     } catch (err) {
@@ -71,7 +71,7 @@ export class GradesService {
     this.loading.set(true);
     try {
       const updated = await this.repo.update(id, dto);
-      this.grades.update(list => list.map(g => g.id === id ? updated : g));
+      this.grades.update((list: Grade[]) => list.map((g: Grade) => g.id === id ? updated : g));
       this.notify.success('Nota actualizada correctamente');
       this.closeForm();
     } catch (err) {
@@ -87,7 +87,7 @@ export class GradesService {
     this.loading.set(true);
     try {
       await this.repo.delete(id);
-      this.grades.update(list => list.filter(g => g.id !== id));
+      this.grades.update((list: Grade[]) => list.filter((g: Grade) => g.id !== id));
       this.notify.success('Nota eliminada correctamente');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Error al eliminar nota';
@@ -117,10 +117,10 @@ export class GradesService {
   }
 
   getStudentName(id: number): string {
-    return this.students().find(s => s.id === id)?.nombre || 'Desconocido';
+    return this.students().find((s: Student) => s.id === id)?.name || 'Desconocido';
   }
 
   getTeacherName(id: number): string {
-    return this.teachers().find(t => t.id === id)?.nombre || 'Desconocido';
+    return this.teachers().find((t: Teacher) => t.id === id)?.name || 'Desconocido';
   }
 }

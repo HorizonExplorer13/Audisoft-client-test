@@ -22,7 +22,7 @@ export class StudentListComponent {
   readonly editingStudent = this.service.editingStudent;
 
   readonly columns: ColumnDef<Student>[] = [
-    { key: 'nombre', header: 'Nombre', sortable: true, filterable: true },
+    { key: 'name', header: 'Nombre', sortable: true, filterable: true },
   ];
 
   onCreate(): void {
@@ -34,7 +34,7 @@ export class StudentListComponent {
   }
 
   onDelete(student: Student): void {
-    if (confirm(`¿Está seguro de eliminar al estudiante "${student.nombre}"?`)) {
+    if (confirm(`¿Está seguro de eliminar al estudiante "${student.name}"?`)) {
       this.service.delete(student.id);
     }
   }
@@ -49,9 +49,9 @@ export class StudentListComponent {
 
   onFormSave(student: Student): void {
     if (this.editingStudent()) {
-      this.service.update(student.id, { nombre: student.nombre });
+      this.service.update(student.id, { name: student.name });
     } else {
-      this.service.create({ nombre: student.nombre });
+      this.service.create({ name: student.name });
     }
   }
 }

@@ -1,12 +1,12 @@
 export interface CreateStudentDto {
-  nombre: string;
+  name: string;
 }
 
 export interface UpdateStudentDto {
-  nombre: string;
+  name: string;
 }
 
 export interface StudentResponseDto {
   id: number;
-  nombre: string;
+  name: string;
 }

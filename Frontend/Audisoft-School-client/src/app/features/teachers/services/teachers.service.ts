@@ -40,7 +40,7 @@ export class TeachersService {
     this.loading.set(true);
     try {
       const newTeacher = await this.repo.create(dto);
-      this.teachers.update(list => [...list, newTeacher]);
+      this.teachers.update((list: Teacher[]) => [...list, newTeacher]);
       this.notify.success('Profesor creado correctamente');
       this.closeForm();
     } catch (err) {
@@ -56,7 +56,7 @@ export class TeachersService {
     this.loading.set(true);
     try {
       const updated = await this.repo.update(id, dto);
-      this.teachers.update(list => list.map(t => t.id === id ? updated : t));
+      this.teachers.update((list: Teacher[]) => list.map((t: Teacher) => t.id === id ? updated : t));
       this.notify.success('Profesor actualizado correctamente');
       this.closeForm();
     } catch (err) {
@@ -72,7 +72,7 @@ export class TeachersService {
     this.loading.set(true);
     try {
       await this.repo.delete(id);
-      this.teachers.update(list => list.filter(t => t.id !== id));
+      this.teachers.update((list: Teacher[]) => list.filter((t: Teacher) => t.id !== id));
       this.notify.success('Profesor eliminado correctamente');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Error al eliminar profesor';

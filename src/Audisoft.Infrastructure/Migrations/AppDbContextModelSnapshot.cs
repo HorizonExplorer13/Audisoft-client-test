@@ -21,7 +21,7 @@ namespace Audisoft.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Audisoft.Core.Entities.Estudiante", b =>
+            modelBuilder.Entity("Audisoft.Core.Entities.Grade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,48 +29,30 @@ namespace Audisoft.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Estudiantes", (string)null);
-                });
-
-            modelBuilder.Entity("Audisoft.Core.Entities.Nota", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("IdEstudiante")
+                    b.Property<int>("TeacherId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdProfesor")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<decimal>("Valor")
+                    b.Property<decimal>("Value")
                         .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdEstudiante");
+                    b.HasIndex("StudentId");
 
-                    b.HasIndex("IdProfesor");
+                    b.HasIndex("TeacherId");
 
-                    b.ToTable("Notas", (string)null);
+                    b.ToTable("Grades", (string)null);
                 });
 
-            modelBuilder.Entity("Audisoft.Core.Entities.Profesor", b =>
+            modelBuilder.Entity("Audisoft.Core.Entities.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -78,35 +60,53 @@ namespace Audisoft.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Profesores", (string)null);
+                    b.ToTable("Students", (string)null);
                 });
 
-            modelBuilder.Entity("Audisoft.Core.Entities.Nota", b =>
+            modelBuilder.Entity("Audisoft.Core.Entities.Teacher", b =>
                 {
-                    b.HasOne("Audisoft.Core.Entities.Estudiante", "Estudiante")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Teachers", (string)null);
+                });
+
+            modelBuilder.Entity("Audisoft.Core.Entities.Grade", b =>
+                {
+                    b.HasOne("Audisoft.Core.Entities.Student", "Student")
                         .WithMany()
-                        .HasForeignKey("IdEstudiante")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
-                        .HasConstraintName("FK_Notas_Estudiantes");
+                        .HasConstraintName("FK_Grades_Students");
 
-                    b.HasOne("Audisoft.Core.Entities.Profesor", "Profesor")
+                    b.HasOne("Audisoft.Core.Entities.Teacher", "Teacher")
                         .WithMany()
-                        .HasForeignKey("IdProfesor")
+                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
-                        .HasConstraintName("FK_Notas_Profesores");
+                        .HasConstraintName("FK_Grades_Teachers");
 
-                    b.Navigation("Estudiante");
+                    b.Navigation("Student");
 
-                    b.Navigation("Profesor");
+                    b.Navigation("Teacher");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,22 +8,22 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row g-3">
       <div class="col-md-6">
-        <label for="nombre" class="form-label fw-medium">Asignatura <span class="text-danger">*</span></label>
+        <label for="name" class="form-label fw-medium">Asignatura <span class="text-danger">*</span></label>
         <input
           type="text"
-          id="nombre"
+          id="name"
           class="form-control"
-          formControlName="nombre"
+          formControlName="name"
           placeholder="Ingrese el nombre de la asignatura"
-          [class.is-invalid]="nombreInvalid"
+          [class.is-invalid]="nameInvalid"
           autocomplete="off"
         />
-        @if (nombreInvalid) {
+        @if (nameInvalid) {
           <div class="invalid-feedback">
-            @if (nombre?.errors?.['required']) {
+            @if (name?.errors?.['required']) {
               El nombre de la asignatura es obligatorio
             }
-            @if (nombre?.errors?.['maxlength']) {
+            @if (name?.errors?.['maxlength']) {
               El nombre no puede exceder 200 caracteres
             }
           </div>
@@ -31,27 +31,27 @@
       </div>
 
       <div class="col-md-6">
-        <label for="valor" class="form-label fw-medium">Valor <span class="text-danger">*</span></label>
+        <label for="value" class="form-label fw-medium">Valor <span class="text-danger">*</span></label>
         <input
           type="number"
-          id="valor"
+          id="value"
           class="form-control"
-          formControlName="valor"
+          formControlName="value"
           placeholder="0.00"
           step="0.01"
           min="0"
           max="999.99"
-          [class.is-invalid]="valorInvalid"
+          [class.is-invalid]="valueInvalid"
         />
-        @if (valorInvalid) {
+        @if (valueInvalid) {
           <div class="invalid-feedback">
-            @if (valor?.errors?.['required']) {
+            @if (value?.errors?.['required']) {
               El valor es obligatorio
             }
-            @if (valor?.errors?.['min']) {
+            @if (value?.errors?.['min']) {
               El valor debe ser mayor o igual a 0
             }
-            @if (valor?.errors?.['max']) {
+            @if (value?.errors?.['max']) {
               El valor no puede exceder 999.99
             }
           </div>
@@ -59,37 +59,37 @@
       </div>
 
       <div class="col-md-6">
-        <label for="idEstudiante" class="form-label fw-medium">Estudiante <span class="text-danger">*</span></label>
+        <label for="studentId" class="form-label fw-medium">Estudiante <span class="text-danger">*</span></label>
         <select
-          id="idEstudiante"
+          id="studentId"
           class="form-select"
-          formControlName="idEstudiante"
-          [class.is-invalid]="idEstudianteInvalid"
+          formControlName="studentId"
+          [class.is-invalid]="studentIdInvalid"
         >
           <option value="0" disabled>Seleccione un estudiante</option>
           @for (student of students; track student.id) {
-            <option [value]="student.id">{{ student.nombre }}</option>
+            <option [value]="student.id">{{ student.name }}</option>
           }
         </select>
-        @if (idEstudianteInvalid) {
+        @if (studentIdInvalid) {
           <div class="invalid-feedback">Debe seleccionar un estudiante</div>
         }
       </div>
 
       <div class="col-md-6">
-        <label for="idProfesor" class="form-label fw-medium">Profesor <span class="text-danger">*</span></label>
+        <label for="teacherId" class="form-label fw-medium">Profesor <span class="text-danger">*</span></label>
         <select
-          id="idProfesor"
+          id="teacherId"
           class="form-select"
-          formControlName="idProfesor"
-          [class.is-invalid]="idProfesorInvalid"
+          formControlName="teacherId"
+          [class.is-invalid]="teacherIdInvalid"
         >
           <option value="0" disabled>Seleccione un profesor</option>
           @for (teacher of teachers; track teacher.id) {
-            <option [value]="teacher.id">{{ teacher.nombre }}</option>
+            <option [value]="teacher.id">{{ teacher.name }}</option>
           }
         </select>
-        @if (idProfesorInvalid) {
+        @if (teacherIdInvalid) {
           <div class="invalid-feedback">Debe seleccionar un profesor</div>
         }
       </div>

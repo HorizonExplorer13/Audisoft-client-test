@@ -22,17 +22,17 @@ export class GradeListComponent {
   readonly editingGrade = this.service.editingGrade;
 
   readonly columns: ColumnDef<Grade>[] = [
-    { key: 'nombre', header: 'Asignatura', sortable: true, filterable: true },
-    { key: 'valor', header: 'Valor', sortable: true, filterable: true, align: 'center', width: '100px' },
+    { key: 'name', header: 'Asignatura', sortable: true, filterable: true },
+    { key: 'value', header: 'Valor', sortable: true, filterable: true, align: 'center', width: '100px' },
     {
-      key: 'idEstudiante',
+      key: 'studentId',
       header: 'Estudiante',
       sortable: true,
       filterable: true,
       render: (value: unknown) => this.service.getStudentName(value as number),
     },
     {
-      key: 'idProfesor',
+      key: 'teacherId',
       header: 'Profesor',
       sortable: true,
       filterable: true,
@@ -49,7 +49,7 @@ export class GradeListComponent {
   }
 
   onDelete(grade: Grade): void {
-    if (confirm(`¿Está seguro de eliminar la nota "${grade.nombre}"?`)) {
+    if (confirm(`¿Está seguro de eliminar la nota "${grade.name}"?`)) {
       this.service.delete(grade.id);
     }
   }
@@ -65,17 +65,17 @@ export class GradeListComponent {
   onFormSave(grade: Grade): void {
     if (this.editingGrade()) {
       this.service.update(grade.id, {
-        nombre: grade.nombre,
-        valor: grade.valor,
-        idProfesor: grade.idProfesor,
-        idEstudiante: grade.idEstudiante,
+        name: grade.name,
+        value: grade.value,
+        teacherId: grade.teacherId,
+        studentId: grade.studentId,
       });
     } else {
       this.service.create({
-        nombre: grade.nombre,
-        valor: grade.valor,
-        idProfesor: grade.idProfesor,
-        idEstudiante: grade.idEstudiante,
+        name: grade.name,
+        value: grade.value,
+        teacherId: grade.teacherId,
+        studentId: grade.studentId,
       });
     }
   }

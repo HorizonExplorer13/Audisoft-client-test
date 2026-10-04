@@ -11,17 +11,17 @@
             type="button"
             class="btn-close btn-close-white"
             (click)="onClose()"
-            aria-label="Cerrar"
+            aria-label="Close"
           ></button>
         </div>
         <div class="modal-body text-center py-4">
           @if (entityName) {
             <p class="mb-2">
-              No se puede eliminar el <strong>{{ entityName }}</strong> seleccionado.
+              Cannot delete the selected <strong>{{ entityName }}</strong>.
             </p>
           } @else {
             <p class="mb-2">
-              No se puede eliminar el registro seleccionado.
+              Cannot delete the selected record.
             </p>
           }
           <p class="text-muted mb-0">{{ message }}</p>
@@ -33,7 +33,7 @@
             (click)="onClose()"
           >
             <i class="bi bi-check-circle me-1"></i>
-            Entendido
+            Understood
           </button>
         </div>
       </div>

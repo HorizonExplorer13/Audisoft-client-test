@@ -1,12 +1,12 @@
 export interface CreateTeacherDto {
-  nombre: string;
+  name: string;
 }
 
 export interface UpdateTeacherDto {
-  nombre: string;
+  name: string;
 }
 
 export interface TeacherResponseDto {
   id: number;
-  nombre: string;
+  name: string;
 }

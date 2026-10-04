@@ -7,10 +7,10 @@ public class ApiResponse<T>
     public string message { get; set; } = string.Empty;
     public List<string> errors { get; set; } = new();
 
-    public static ApiResponse<T> Ok(T data, string message = "Operation completed successfully")
+    public static ApiResponse<T> Ok(T data, string message = "Operación completada exitosamente")
         => new() { success = true, data = data, message = message };
 
-    public static ApiResponse<T> Created(T data, string message = "Resource created successfully")
+    public static ApiResponse<T> Created(T data, string message = "Recurso creado exitosamente")
         => new() { success = true, data = data, message = message };
 
     public static ApiResponse<T> Fail(string message, List<string>? errors = null)
@@ -19,13 +19,13 @@ public class ApiResponse<T>
 
 public class ApiResponse : ApiResponse<object>
 {
-    public static ApiResponse Ok(object? data, string message = "Operation completed successfully")
+    public static ApiResponse Ok(object? data, string message = "Operación completada exitosamente")
         => new() { success = true, data = data, message = message };
 
-    public static ApiResponse Ok(string message = "Operation completed successfully")
+    public static ApiResponse Ok(string message = "Operación completada exitosamente")
         => new() { success = true, data = null, message = message };
 
-    public static new ApiResponse Created(object data, string message = "Resource created successfully")
+    public static new ApiResponse Created(object data, string message = "Recurso creado exitosamente")
         => new() { success = true, data = data, message = message };
 
     public static new ApiResponse Fail(string message, List<string>? errors = null)

@@ -4,25 +4,25 @@ import { CreateGradeDto, UpdateGradeDto } from '../../domain/dtos/grade.dto';
 export const GradeApiMapper = {
   toDomain: (dto: GradeResponseDto) => ({
     id: dto.id,
-    nombre: dto.nombre,
-    valor: dto.valor,
-    idProfesor: dto.idProfesor,
-    idEstudiante: dto.idEstudiante,
-    profesor: dto.profesor ? { id: dto.profesor.id, nombre: dto.profesor.nombre } : undefined,
-    estudiante: dto.estudiante ? { id: dto.estudiante.id, nombre: dto.estudiante.nombre } : undefined,
+    name: dto.name,
+    value: dto.value,
+    teacherId: dto.teacherId,
+    studentId: dto.studentId,
+    teacher: dto.teacher ? { id: dto.teacher.id, name: dto.teacher.name } : undefined,
+    student: dto.student ? { id: dto.student.id, name: dto.student.name } : undefined,
   }),
 
   toCreateApi: (domain: CreateGradeDto) => ({
-    Nombre: domain.nombre,
-    Valor: domain.valor,
-    IdProfesor: domain.idProfesor,
-    IdEstudiante: domain.idEstudiante,
+    name: domain.name,
+    value: domain.value,
+    teacherId: domain.teacherId,
+    studentId: domain.studentId,
   }),
 
   toUpdateApi: (domain: UpdateGradeDto) => ({
-    Nombre: domain.nombre,
-    Valor: domain.valor,
-    IdProfesor: domain.idProfesor,
-    IdEstudiante: domain.idEstudiante,
+    name: domain.name,
+    value: domain.value,
+    teacherId: domain.teacherId,
+    studentId: domain.studentId,
   }),
 };

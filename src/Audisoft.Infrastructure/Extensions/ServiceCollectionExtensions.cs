@@ -19,9 +19,9 @@ public static class ServiceCollectionExtensions
                 sqlOptions => sqlOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.GetName().Name)
             ));
 
-        services.AddScoped<IEstudianteRepository, EstudianteRepository>();
-        services.AddScoped<IProfesorRepository, ProfesorRepository>();
-        services.AddScoped<INotaRepository, NotaRepository>();
+        services.AddScoped<IStudentRepository, StudentRepository>();
+        services.AddScoped<ITeacherRepository, TeacherRepository>();
+        services.AddScoped<IGradeRepository, GradeRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

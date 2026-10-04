@@ -10,16 +10,16 @@
       <dd class="col-sm-9">{{ grade.id }}</dd>
 
       <dt class="col-sm-3 text-muted">Asignatura</dt>
-      <dd class="col-sm-9 fw-medium">{{ grade.nombre }}</dd>
+      <dd class="col-sm-9 fw-medium">{{ grade.name }}</dd>
 
       <dt class="col-sm-3 text-muted">Valor</dt>
-      <dd class="col-sm-9">{{ grade.valor | number:'1.2-2' }}</dd>
+      <dd class="col-sm-9">{{ grade.value | number:'1.2-2' }}</dd>
 
       <dt class="col-sm-3 text-muted">Estudiante</dt>
-      <dd class="col-sm-9">{{ grade.estudiante?.nombre || 'Desconocido' }}</dd>
+      <dd class="col-sm-9">{{ grade.student?.name || 'Desconocido' }}</dd>
 
       <dt class="col-sm-3 text-muted">Profesor</dt>
-      <dd class="col-sm-9">{{ grade.profesor?.nombre || 'Desconocido' }}</dd>
+      <dd class="col-sm-9">{{ grade.teacher?.name || 'Desconocido' }}</dd>
     </dl>
 
     <div class="d-flex justify-content-end mt-4">

@@ -22,7 +22,7 @@ public class CustomExceptionMiddleware
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Unhandled exception occurred");
+            _logger.LogError(ex, "Excepción no controlada");
             await HandleExceptionAsync(context, ex);
         }
     }
@@ -32,9 +32,9 @@ public class CustomExceptionMiddleware
         context.Response.ContentType = "application/json";
         var response = exception switch
         {
-            KeyNotFoundException => ApiResponse.Fail("Resource not found", new List<string> { exception.Message }),
-            ArgumentException => ApiResponse.Fail("Invalid request", new List<string> { exception.Message }),
-            _ => ApiResponse.Fail("An internal server error occurred")
+            KeyNotFoundException => ApiResponse.Fail("Recurso no encontrado", new List<string> { exception.Message }),
+            ArgumentException => ApiResponse.Fail("Solicitud inválida", new List<string> { exception.Message }),
+            _ => ApiResponse.Fail("Error interno del servidor")
         };
 
         context.Response.StatusCode = exception switch

@@ -1,4 +1,4 @@
-import { Injectable, inject, signal, computed, Inject } from '@angular/core';
+import { Injectable, inject, signal, computed } from '@angular/core';
 import { StudentRepository } from '../../../domain/repositories/student.repository';
 import { Student } from '../../../domain/models/student.model';
 import { CreateStudentDto, UpdateStudentDto } from '../../../domain/dtos/student.dto';
@@ -40,7 +40,7 @@ export class StudentsService {
     this.loading.set(true);
     try {
       const newStudent = await this.repo.create(dto);
-      this.students.update(list => [...list, newStudent]);
+      this.students.update((list: Student[]) => [...list, newStudent]);
       this.notify.success('Estudiante creado correctamente');
       this.closeForm();
     } catch (err) {
@@ -56,7 +56,7 @@ export class StudentsService {
     this.loading.set(true);
     try {
       const updated = await this.repo.update(id, dto);
-      this.students.update(list => list.map(s => s.id === id ? updated : s));
+      this.students.update((list: Student[]) => list.map((s: Student) => s.id === id ? updated : s));
       this.notify.success('Estudiante actualizado correctamente');
       this.closeForm();
     } catch (err) {
@@ -72,7 +72,7 @@ export class StudentsService {
     this.loading.set(true);
     try {
       await this.repo.delete(id);
-      this.students.update(list => list.filter(s => s.id !== id));
+      this.students.update((list: Student[]) => list.filter((s: Student) => s.id !== id));
       this.notify.success('Estudiante eliminado correctamente');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Error al eliminar estudiante';
