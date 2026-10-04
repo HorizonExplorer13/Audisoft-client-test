@@ -16,7 +16,7 @@
     <table class="table table-hover table-striped align-middle">
       <thead>
         <tr>
-          @for (column of columns; track column.key) {
+          @for (column of columns(); track column.key) {
             <th
               [style.width]="column.width"
               [class.text-center]="column.align === 'center'"
@@ -32,22 +32,22 @@
               </div>
             </th>
           }
-          @if (showActions) {
-            <th class="text-center" style="width: 120px;">{{ actionHeader }}</th>
+          @if (showActions()) {
+            <th class="text-center" style="width: 120px;">{{ actionHeader() }}</th>
           }
         </tr>
       </thead>
       <tbody>
         @if (paginatedData().length === 0) {
           <tr>
-            <td [attr.colspan]="columns.length + (showActions ? 1 : 0)" class="text-center text-muted py-4">
+            <td [attr.colspan]="columns().length + (showActions() ? 1 : 0)" class="text-center text-muted py-4">
               No se encontraron registros
             </td>
           </tr>
         } @else {
           @for (row of paginatedData(); track row) {
             <tr>
-              @for (column of columns; track column.key) {
+              @for (column of columns(); track column.key) {
                 <td
                   [class.text-center]="column.align === 'center'"
                   [class.text-end]="column.align === 'end'"
@@ -55,7 +55,7 @@
                   {{ getCellValue(row, column) }}
                 </td>
               }
-              @if (showActions) {
+              @if (showActions()) {
                 <td class="text-center">
                   <div class="btn-group btn-group-sm" role="group">
                     <button
@@ -128,7 +128,7 @@
         </li>
       </ul>
       <span class="pagination-info">
-        Mostrando {{ (currentPage() - 1) * pageSize + 1 }} a {{ min(currentPage() * pageSize, filteredData().length) }} de {{ filteredData().length }} registros
+        Mostrando {{ (currentPage() - 1) * pageSize() + 1 }} a {{ min(currentPage() * pageSize(), filteredData().length) }} de {{ filteredData().length }} registros
       </span>
     </nav>
   }

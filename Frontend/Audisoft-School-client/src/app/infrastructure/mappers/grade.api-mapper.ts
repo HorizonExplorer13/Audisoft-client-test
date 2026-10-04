@@ -13,16 +13,16 @@ export const GradeApiMapper = {
   }),
 
   toCreateApi: (domain: CreateGradeDto) => ({
-    nombre: domain.nombre,
-    valor: domain.valor,
-    idProfesor: domain.idProfesor,
-    idEstudiante: domain.idEstudiante,
+    Nombre: domain.nombre,
+    Valor: domain.valor,
+    IdProfesor: domain.idProfesor,
+    IdEstudiante: domain.idEstudiante,
   }),
 
   toUpdateApi: (domain: UpdateGradeDto) => ({
-    nombre: domain.nombre,
-    valor: domain.valor,
-    idProfesor: domain.idProfesor,
-    idEstudiante: domain.idEstudiante,
+    Nombre: domain.nombre,
+    Valor: domain.valor,
+    IdProfesor: domain.idProfesor,
+    IdEstudiante: domain.idEstudiante,
   }),
 };

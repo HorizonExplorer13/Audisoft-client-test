@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, signal, computed } from '@angular/core';
+import { Component, input, output, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export interface ColumnDef<T> {
@@ -19,24 +19,27 @@ export interface ColumnDef<T> {
   styleUrl: './data-table.component.scss',
 })
 export class DataTableComponent<T> {
-  @Input() data: T[] = [];
-  @Input() columns: ColumnDef<T>[] = [];
-  @Input() pageSize = 10;
-  @Input() showActions = true;
-  @Input() actionHeader = 'Acciones';
-  @Input() loading = false;
+  // Signal inputs (Angular 17.1+)
+  data = input<T[]>([]);
+  columns = input<ColumnDef<T>[]>([]);
+  pageSize = input(10);
+  showActions = input(true);
+  actionHeader = input('Acciones');
+  loading = input(false);
 
-  @Output() edit = new EventEmitter<T>();
-  @Output() delete = new EventEmitter<T>();
-  @Output() view = new EventEmitter<T>();
+  // Outputs
+  edit = output<T>();
+  delete = output<T>();
+  view = output<T>();
 
+  // Internal signals
   readonly currentPage = signal(1);
   readonly sortColumn = signal<keyof T | string | null>(null);
   readonly sortDirection = signal<'asc' | 'desc'>('asc');
   readonly globalFilter = signal('');
 
   readonly filteredData = computed(() => {
-    let result = this.data;
+    let result = this.data();
     const filter = this.globalFilter().toLowerCase().trim();
 
     if (filter) {
@@ -63,11 +66,11 @@ export class DataTableComponent<T> {
   });
 
   readonly paginatedData = computed(() => {
-    const start = (this.currentPage() - 1) * this.pageSize;
-    return this.filteredData().slice(start, start + this.pageSize);
+    const start = (this.currentPage() - 1) * this.pageSize();
+    return this.filteredData().slice(start, start + this.pageSize());
   });
 
-  readonly totalPages = computed(() => Math.ceil(this.filteredData().length / this.pageSize));
+  readonly totalPages = computed(() => Math.ceil(this.filteredData().length / this.pageSize()));
 
   readonly min = Math.min;
 

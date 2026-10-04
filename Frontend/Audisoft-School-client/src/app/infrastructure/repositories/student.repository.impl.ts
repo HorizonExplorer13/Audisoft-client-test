@@ -24,7 +24,7 @@ export class StudentRepositoryImpl implements StudentRepository {
   async create(dto: CreateStudentDto): Promise<Student> {
     const apiDto = StudentApiMapper.toCreateApi(dto);
     const response = await this.api.post<ApiResponse<StudentResponseDto>>(ENDPOINTS.students, apiDto).toPromise();
-    return StudentApiMapper.toDomain(response!.data!);
+    return StudentApiMapper.toDomain(response?.data!);
   }
 
   async update(id: number, dto: UpdateStudentDto): Promise<Student> {

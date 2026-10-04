@@ -2,32 +2,32 @@ namespace Audisoft.API.Common;
 
 public class ApiResponse<T>
 {
-    public bool Success { get; set; }
-    public T? Data { get; set; }
-    public string Message { get; set; } = string.Empty;
-    public List<string> Errors { get; set; } = new();
+    public bool success { get; set; }
+    public T? data { get; set; }
+    public string message { get; set; } = string.Empty;
+    public List<string> errors { get; set; } = new();
 
     public static ApiResponse<T> Ok(T data, string message = "Operation completed successfully")
-        => new() { Success = true, Data = data, Message = message };
+        => new() { success = true, data = data, message = message };
 
     public static ApiResponse<T> Created(T data, string message = "Resource created successfully")
-        => new() { Success = true, Data = data, Message = message };
+        => new() { success = true, data = data, message = message };
 
     public static ApiResponse<T> Fail(string message, List<string>? errors = null)
-        => new() { Success = false, Message = message, Errors = errors ?? new List<string>() };
+        => new() { success = false, message = message, errors = errors ?? new List<string>() };
 }
 
 public class ApiResponse : ApiResponse<object>
 {
     public static ApiResponse Ok(object? data, string message = "Operation completed successfully")
-        => new() { Success = true, Data = data, Message = message };
+        => new() { success = true, data = data, message = message };
 
     public static ApiResponse Ok(string message = "Operation completed successfully")
-        => new() { Success = true, Data = null, Message = message };
+        => new() { success = true, data = null, message = message };
 
     public static new ApiResponse Created(object data, string message = "Resource created successfully")
-        => new() { Success = true, Data = data, Message = message };
+        => new() { success = true, data = data, message = message };
 
     public static new ApiResponse Fail(string message, List<string>? errors = null)
-        => new() { Success = false, Message = message, Errors = errors ?? new List<string>() };
+        => new() { success = false, message = message, errors = errors ?? new List<string>() };
 }

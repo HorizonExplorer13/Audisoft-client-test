@@ -33,7 +33,7 @@ export class ApiResponseInterceptor implements HttpInterceptor {
             if (!apiResponse.success) {
               throw new ApiError(apiResponse.message, apiResponse.errors, event.status);
             }
-            return event.clone({ body: apiResponse.data });
+            return event.clone({ body: apiResponse });
           }
         }
         return event;

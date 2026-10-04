@@ -8,10 +8,10 @@ export const TeacherApiMapper = {
   }),
 
   toCreateApi: (domain: CreateTeacherDto) => ({
-    nombre: domain.nombre,
+    Nombre: domain.nombre,
   }),
 
   toUpdateApi: (domain: UpdateTeacherDto) => ({
-    nombre: domain.nombre,
+    Nombre: domain.nombre,
   }),
 };
