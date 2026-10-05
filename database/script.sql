@@ -39,6 +39,9 @@ CREATE INDEX [IX_Grades_TeacherId] ON [Grades] ([TeacherId]);
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
 VALUES (N'20261004170928_InitialCreate', N'9.0.20');
 
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20261004173609_update-entities-migration', N'9.0.20');
+
 COMMIT;
 GO
 
