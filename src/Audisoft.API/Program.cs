@@ -1,5 +1,7 @@
 using Audisoft.API.Extensions;
 using Audisoft.API.Middleware;
+using Audisoft.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,8 +28,15 @@ builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 
+// Auto-migrate database on startup (Development only)
 if (app.Environment.IsDevelopment())
 {
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        dbContext.Database.Migrate();
+    }
+    
     app.MapOpenApi();
 }
 

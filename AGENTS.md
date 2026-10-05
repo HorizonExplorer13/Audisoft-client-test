@@ -1,5 +1,7 @@
 # Audisoft-School-App - Agent Instructions
 
+> **Operational Mode**: You are in **build mode** (not read-only). You are permitted to make file changes, run shell commands, and utilize all tools as needed.
+
 ## Project Overview
 .NET 9 Web API for school management (Estudiantes, Profesores, Notas) - Technical test for Audisoft.
 Follows Clean Architecture with EF Core 9 (Code-First) and SQL Server.
