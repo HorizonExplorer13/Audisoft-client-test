@@ -22,7 +22,7 @@ export class DataTableComponent<T> {
   // Signal inputs (Angular 17.1+)
   data = input<T[]>([]);
   columns = input<ColumnDef<T>[]>([]);
-  pageSize = input(10);
+  pageSize = input(3);
   showActions = input(true);
   actionHeader = input('Acciones');
   loading = input(false);
