@@ -11,7 +11,8 @@ export const StudentMapper = {
     name: formValue.name.trim(),
   }),
 
-  toUpdateDto: (formValue: { name: string }): UpdateStudentDto => ({
+  toUpdateDto: (formValue: { name: string }, id: number): UpdateStudentDto => ({
+    id,
     name: formValue.name.trim(),
   }),
 };

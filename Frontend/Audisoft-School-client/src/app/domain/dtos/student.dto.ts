@@ -3,6 +3,7 @@ export interface CreateStudentDto {
 }
 
 export interface UpdateStudentDto {
+  id: number;
   name: string;
 }
 

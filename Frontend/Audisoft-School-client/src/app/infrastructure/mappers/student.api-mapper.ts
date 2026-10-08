@@ -12,6 +12,7 @@ export const StudentApiMapper = {
   }),
 
   toUpdateApi: (domain: UpdateStudentDto) => ({
+    id: domain.id,
     name: domain.name,
   }),
 };

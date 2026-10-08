@@ -9,6 +9,7 @@ export interface CreateGradeDto {
 }
 
 export interface UpdateGradeDto {
+  id: number;
   name: string;
   value: number;
   teacherId: number;
