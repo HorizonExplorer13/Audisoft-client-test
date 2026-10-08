@@ -20,6 +20,7 @@ export const GradeApiMapper = {
   }),
 
   toUpdateApi: (domain: UpdateGradeDto) => ({
+    id: domain.id,
     name: domain.name,
     value: domain.value,
     teacherId: domain.teacherId,

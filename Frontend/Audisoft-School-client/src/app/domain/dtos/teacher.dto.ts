@@ -3,6 +3,7 @@ export interface CreateTeacherDto {
 }
 
 export interface UpdateTeacherDto {
+  id: number;
   name: string;
 }
 

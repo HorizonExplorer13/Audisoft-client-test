@@ -11,7 +11,8 @@ export const TeacherMapper = {
     name: formValue.name.trim(),
   }),
 
-  toUpdateDto: (formValue: { name: string }): UpdateTeacherDto => ({
+  toUpdateDto: (formValue: { name: string }, id: number): UpdateTeacherDto => ({
+    id,
     name: formValue.name.trim(),
   }),
 };

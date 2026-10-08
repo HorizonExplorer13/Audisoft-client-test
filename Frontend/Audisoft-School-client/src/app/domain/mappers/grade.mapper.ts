@@ -21,7 +21,8 @@ export const GradeMapper = {
     studentId: formValue.studentId,
   }),
 
-  toUpdateDto: (formValue: { name: string; value: number; teacherId: number; studentId: number }): UpdateGradeDto => ({
+  toUpdateDto: (formValue: { name: string; value: number; teacherId: number; studentId: number }, id: number): UpdateGradeDto => ({
+    id,
     name: formValue.name.trim(),
     value: formValue.value,
     teacherId: formValue.teacherId,

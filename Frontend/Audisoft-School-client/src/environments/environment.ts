@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl: 'https://localhost:60961',
+  apiUrl: 'https://api-asft-hta5eydqbgckcggf.centralus-01.azurewebsites.net',
   production: false,
 };

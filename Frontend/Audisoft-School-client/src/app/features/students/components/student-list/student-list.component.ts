@@ -49,7 +49,7 @@ export class StudentListComponent {
 
   onFormSave(student: Student): void {
     if (this.editingStudent()) {
-      this.service.update(student.id, { name: student.name });
+      this.service.update(student.id, { id: student.id, name: student.name });
     } else {
       this.service.create({ name: student.name });
     }

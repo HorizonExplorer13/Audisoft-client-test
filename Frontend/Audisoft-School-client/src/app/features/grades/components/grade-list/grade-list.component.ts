@@ -65,6 +65,7 @@ export class GradeListComponent {
   onFormSave(grade: Grade): void {
     if (this.editingGrade()) {
       this.service.update(grade.id, {
+        id: grade.id,
         name: grade.name,
         value: grade.value,
         teacherId: grade.teacherId,
